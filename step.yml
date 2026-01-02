@@ -8,14 +8,14 @@
 # - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
 
 title: |-
-  Microsoft Teams Adaptive Card Integration
+  Post Microsoft Teams Workflow Message
 summary: |
-  Send Microsoft Teams message to a channel
+  Send Microsoft Teams message using a workflow webhook URL
 description: |
-  Send Microsoft Teams message as adaptive card
-website: https://github.com/HUK-COBURG/bitrise-step-microsoft-teams-adaptive-card
-source_code_url: https://github.com/HUK-COBURG/bitrise-step-microsoft-teams-adaptive-card
-support_url: https://github.com/HUK-COBURG/bitrise-step-microsoft-teams-adaptive-card/issues
+  This is an updated Microsoft Teams notificcations step for 2026 as the other ones were not working.
+website: https://github.com/Sampson8x/bitrise-step-microsoft-teams-adaptive-card
+source_code_url: https://github.com/Sampson8x/bitrise-step-microsoft-teams-adaptive-card
+support_url: https://github.com/Sampson8x/bitrise-step-microsoft-teams-adaptive-card/issues
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
@@ -28,7 +28,7 @@ is_skippable: true
 
 toolkit:
   go:
-    package_name: github.com/HUK-COBURG/bitrise-step-microsoft-teams-adaptive-card
+    package_name: github.com/Sampson8x/bitrise-step-post-microsoft-teams-message
 
 
 inputs:

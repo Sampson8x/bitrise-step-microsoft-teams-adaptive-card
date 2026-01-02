@@ -68,7 +68,7 @@ func NewCard(c Config) adaptivecard.Card {
 		statusBanner.Style = c.CardStyleOnError
 		headline.Text = c.CardHeadlineOnError
 	}
-	statusBanner.Spacing = "None"
+	statusBanner.Spacing = "none"
 	statusBanner.Separator = true
 	statusBanner.Items = append(statusBanner.Items, headline)
 	card.Body = append(card.Body, adaptivecard.Element(statusBanner))
@@ -172,7 +172,11 @@ func pairs(s string) [][2]string {
 
 // PostCard sends the given adaptive card to configured webhook
 func PostCard(conf Config, msg adaptivecard.Card) error {
-	b, err := json.Marshal(msg)
+	message, err := adaptivecard.NewMessageFromCard(msg)
+	if err != nil {
+		return err
+	}
+	b, err := json.Marshal(message)
 	if err != nil {
 		return err
 	}
@@ -214,6 +218,10 @@ func main() {
 	log.SetEnableDebugLog(conf.Debug)
 
 	msg := NewCard(conf)
+	if validationErr := msg.Validate(); validationErr != nil {
+		log.Errorf("Card validation error: %s", validationErr)
+		os.Exit(1)
+	}
 	if err := PostCard(conf, msg); err != nil {
 		log.Errorf("Error: %s", err)
 		os.Exit(1)
